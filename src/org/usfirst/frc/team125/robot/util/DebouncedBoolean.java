@@ -21,7 +21,6 @@ public class DebouncedBoolean {
         } else {
             loopCounter = 0;
         }
-        SmartDashboard.putNumber("Loop Counter", loopCounter);
     }
     
 }
