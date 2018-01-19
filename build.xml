@@ -20,6 +20,7 @@
       <fileset file="${networktables.jar}"/>
       <fileset file="${opencv.jar}"/>
       <fileset file="${cscore.jar}"/>
+      <fileset file="lib/junit.jar" />
       <fileset dir="${userLibs}" erroronmissingdir="false"/>
     </path>
     
@@ -36,6 +37,7 @@
       compiler="javac${ant.java.version}"
       debug="true">
       <src path="${src.dir}" />
+      <src path="${test.dir}" />
       <src path="${pathsrc.dir}" />
     </javac>
   </target>
@@ -50,6 +52,13 @@
   </target>
 
     <target name="test" depends="compile">
+      
+      <path id="classpath.path">
+            <fileset dir="${userLibs.dir}" erroronmissingdir="false" includes="*.jar"/>
+            <fileset file="${wpilib.jar}"/>
+            <fileset dir="lib/"
+                     includes="*.jar"/> <!-- include everything, I did not remove wpi's specific includes-->
+      </path>
         <javac srcdir="${src.dir}"
                destdir="${build.dir}"
                includeAntRuntime="no"
@@ -64,9 +73,10 @@
             <src path="${pathsrc.dir}" />
         </javac>
         <junit haltonfailure="no" failureproperty="test.failed">
+	  <classpath location="lib/junit.jar" />
             <batchtest>
                 <fileset dir="test">
-                    <include name="**/*Test*"/>
+                    <include name="**/**"/>
                 </fileset>
             </batchtest>
             <formatter type="brief" usefile="false"/>

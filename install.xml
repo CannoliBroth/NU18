@@ -8,6 +8,10 @@
     <target name="installWpi" >
     <!-- Make the WPILib directory. -->
     <mkdir dir="${wpilib}"/>
+    <mkdir dir="lib" />
+    <get src="http://search.maven.org/remotecontent?filepath=junit/junit/4.12/junit-4.12.jar" dest="lib/junit.jar" />
+
+    <delete file="${wpilib}/plugin.jar"/>
 
     <!-- Get the WPILib Eclipse Java Plugin - the URL should be in build.properties. -->
     <get src="${wpilib.pluginURL}" dest="${wpilib}/plugin.jar"/>
