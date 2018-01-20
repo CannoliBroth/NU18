@@ -5,4 +5,4 @@ jdk:
 before_install:
   - ant doInstall -buildfile install.xml
 install:
-  - ant compile
+  - ant compile -buildfile buildTravis.xml
